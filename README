@@ -1,0 +1,71 @@
+Tema realizata de VULPE Theodor - 315CB
+
+Tema este structurata in urmatoarele fisiere:
+
+browser.h - fisier header ce contine implementarea structurilor si prototipuri de functii
+
+operatii_browser.c - implementarea functiilor ce tin de operatii in browser, denumite intuitiv
+
+lista.c - implementarea functiilor specifice structurii de lista
+
+stiva.c - implementarea functiilor specifice structurii de stiva
+
+main.c - se ocupa de procesarea operatiilor citite din fisier prin apelul functiilor definite anterior
+
+Implementarea structurilor de lista si functiile aferente am facut-o folosindu-ma de ceea ce s-a prezentat la curs si laborator.
+
+La inceputul programului, citesc paginile salvate intr-un vector alocat dinamic, construiesc pagina implicita si deschid tab-ul default cu ID 0. Apoi, fac citirea, pe rand, a fiecarei operatii, care este procesata de functia ProceseazaOperatie. Am grija la citire sa tin cont de spatii sau newline-uri, mai ales pentru ca in checker pare sa existe newline-uri de mai multe tipuri, aceasta fiind o problema care a necesitat relativ mult timp de debugging.
+
+In continuare, voi vorbi despre implementarea fiecarei operatii posibile din enunt:
+
+NEW_TAB
+
+- folosesc functia DeschideTabNou
+- aceasta aloca dinamic un nou tab, pe care il adauga in lista browser-ului
+- primeste ca parametru id-ul curent ca pointer si il incrementeaza
+
+CLOSE
+
+- foloseste functia InchideTabCurent
+- verifica daca tab-ul curent nu este cel initial (conform enuntului, se va afisa o eroare)
+- folosesc o functie denumita CautaTab care primeste un id si returneaza celula din lista aferenta tab-ului, astfel obtin tab-ul curent din lista
+
+OPEN <ID>
+
+- verifica daca exista tab-ul si, in caz afirmativ, il cauta cu functia CautaTab si il seteaza ca tab curent
+
+NEXT/PREV
+
+- functiile DeschideTabUrmator/Anterior
+- obtine urmatorul tab din dreapta/stanga tab-ului curent
+- pentru ca lista este cu santinela, se asigura ca nu se obtine santinela ci urmatorul/anteriorul tab in acest caz
+
+PAGE <ID>
+
+- foloseste functia DeschidePagina
+- cauta pagina in vectorul de pagini, iar daca nu exista afiseaza mesajul de eroare
+- schimba pagina conform cerintei
+
+BACKWARD/FORWARD
+
+- functiile PaginaInapoi/Inainte
+- verifica stiva aferenta sa nu fie goala
+- schimba paina conform cerintei
+
+PRINT
+
+- afiseaza tab-urile incepand de pe tab-ul curent pana se revine pe aceeasi pozitie
+
+PRINT_HISTORY <ID>
+
+- functia AfiseazaIstoric
+- verifica sa existe tab-ul cu acest ID
+- afiseaza stivele folosind functia AfiseazaS
+- functia AfiseazaS primeste ca parametri varful stivei si sensul in care sa se faca afisarea
+- daca afisarea trebuie facuta in reverse, retin intr-un vector de siruri de caractere fiecare descriere in ordinea parcurgerii normale a stivei, urmand sa le afisez in ordine inversa; am grija sa eliberez memoria alocata in urma afisarii
+
+La finalul executiei programului, eliberez memoria alocata: memoria aferenta paginilor citite din fisier; pagina implicita; apelez functia DistrugeLista din lista.c care distruge stivele fiecarui tab, tab-ul insusi si celulele din lista. Am grija ca dupa fiecare eliberare sa ii dau pointerului valoarea NULL.
+
+Punctaj obtinut local la teste:
+Total: 100/100
+Valgrind: 20/20
