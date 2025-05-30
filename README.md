@@ -43,7 +43,7 @@ This project simulates a basic tabbed web browser 🧭 with independent navigati
 make build     # Compile the project
 ./tema1        # Run the program
 make clean     # Clean compiled files
-
+```
 ## 👨‍💻 Author
 
 Theodor Vulpe
