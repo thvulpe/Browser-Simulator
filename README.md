@@ -52,13 +52,6 @@ PRINT_HISTORY 0
 ```
 ---
 
-## 📦 Build & Run
-
-```bash
-make build     # Compile the project
-./tema1        # Run the program
-make clean     # Clean compiled files
-```
 ## 👨‍💻 Author
 
 Theodor Vulpe | 
