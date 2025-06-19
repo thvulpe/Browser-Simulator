@@ -12,11 +12,17 @@ This project simulates a basic tabbed web browser 🧭 with independent navigati
 
 ## 📁 Project Structure
 ├── browser.h # Header file with data structures & function declarations
+
 ├── lista.c # Doubly linked list implementation for tab management
+
 ├── stiva.c # Stack implementation for backward/forward navigation
+
 ├── operatii_browser.c # Core browser operations (tab/page handling)
+
 ├── main.c # Input parsing and operation dispatcher
+
 ├── Makefile # Build automation
+
 └── README.md # You're reading it!
 
 ## 🧱 Data Structures
@@ -25,17 +31,26 @@ This project simulates a basic tabbed web browser 🧭 with independent navigati
 - `tab`: stores the current page and two stacks (`backward`, `forward`)
 - `browser`: tracks the current tab and holds all tabs in a circular doubly-linked list with a sentinel
 
-## 🛠️ How It Works
+## 🧪 Sample Commands from `tema1.in`
 
-1. Load saved pages into a dynamic array
-2. Initialize the browser with a default page (ID 0, "https://acs.pub.ro/")
-3. Process commands like:
-   - `NEW_TAB`, `CLOSE`, `OPEN <ID>`
-   - `NEXT`, `PREV`, `PAGE <ID>`
-   - `BACKWARD`, `FORWARD`
-   - `PRINT`, `PRINT_HISTORY <ID>`
-4. Each command is parsed and dispatched via the `ProceseazaOperatie` function
-5. Memory is released at the end, ensuring no leaks (each pointer is set to `NULL` after `free`)
+```txt
+3
+1 https://google.com/
+Google
+2 https://github.com/
+GitHub
+3 https://stackoverflow.com/
+Stack Overflow
+15
+NEW_TAB
+PAGE 2
+BACKWARD
+FORWARD
+PRINT
+CLOSE
+PRINT_HISTORY 0
+```
+---
 
 ## 📦 Build & Run
 
